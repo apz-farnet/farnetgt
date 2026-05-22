@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FARNET GT - Captura de Pedidos</title>
+    <title>APZ Pedidos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -616,7 +616,8 @@
             { email: "ogarcia@farnet.com.gt", password: "Pedidos#2026!", name: "Otto Garcia", role: "vendor" },
             { email: "pfuentes@farnet.com.gt", password: "Pedidos#2026!", name: "Paola Fuentes", role: "vendor" },
             { email: "pcastro@farnet.com.gt", password: "Pedidos#2026!", name: "Paolo Castro", role: "vendor" },
-            { email: "rcaballeros@farnet.com.gt", password: "Pedidos#2026!", name: "Rafael Caballeros", role: "vendor" }
+            { email: "rcaballeros@farnet.com.gt", password: "Pedidos#2026!", name: "Rafael Caballeros", role: "vendor" },
+            { email: "lsanchez@farnet.com.gt", password: "Pedidos#2026!", name: "Luis Sanchez", role: "vendor" }
         ];
 
         const INITIAL_CUSTOMERS = [
@@ -3957,13 +3958,27 @@
             try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { console.warn('lsSet error', e); }
         }
 
-        // Bootstrap initial data only once
+        // Cambia este número cada vez que actualices clientes, productos o usuarios en el script
+        const DATA_VERSION = "1";
+
         function bootstrapData() {
-            if (!lsGet('fn_users')) lsSet('fn_users', INITIAL_USERS);
-            if (!lsGet('fn_customers')) lsSet('fn_customers', INITIAL_CUSTOMERS);
-            if (!lsGet('fn_products')) lsSet('fn_products', INITIAL_PRODUCTS);
-            if (!lsGet('fn_transports')) lsSet('fn_transports', INITIAL_TRANSPORTS);
-            if (!lsGet('fn_orders')) lsSet('fn_orders', []);
+            const savedVersion = localStorage.getItem('fn_data_version');
+            if (savedVersion !== DATA_VERSION) {
+                // Nueva versión: reemplazar datos base automáticamente
+                lsSet('fn_users', INITIAL_USERS);
+                lsSet('fn_customers', INITIAL_CUSTOMERS);
+                lsSet('fn_products', INITIAL_PRODUCTS);
+                lsSet('fn_transports', INITIAL_TRANSPORTS);
+                if (!lsGet('fn_orders')) lsSet('fn_orders', []);
+                localStorage.setItem('fn_data_version', DATA_VERSION);
+            } else {
+                // Misma versión: solo inicializar lo que falte
+                if (!lsGet('fn_users') || lsGet('fn_users').length === 0) lsSet('fn_users', INITIAL_USERS);
+                if (!lsGet('fn_customers') || lsGet('fn_customers').length === 0) lsSet('fn_customers', INITIAL_CUSTOMERS);
+                if (!lsGet('fn_products') || lsGet('fn_products').length === 0) lsSet('fn_products', INITIAL_PRODUCTS);
+                if (!lsGet('fn_transports') || lsGet('fn_transports').length === 0) lsSet('fn_transports', INITIAL_TRANSPORTS);
+                if (!lsGet('fn_orders')) lsSet('fn_orders', []);
+            }
         }
 
         function getUsers() { return lsGet('fn_users', INITIAL_USERS); }
