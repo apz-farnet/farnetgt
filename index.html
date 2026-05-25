@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>APZ Pedidos</title>
+    <title>Pedidos GT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -48,18 +48,38 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html,
+        body {
+            height: 100%;
+            height: 100dvh;
+            width: 100%;
+            overflow: hidden;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
         }
 
         #app {
             height: 100%;
             width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
             position: relative;
+        }
+
+        /* Desktop: show app centered with shadow */
+        @media (min-width: 600px) {
+            body {
+                display: flex;
+                align-items: stretch;
+                justify-content: center;
+            }
+
+            #app {
+                box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+            }
         }
 
         .screen {
@@ -238,11 +258,12 @@
         }
 
         .bottom-nav {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 4rem;
+            height: calc(4rem + env(safe-area-inset-bottom, 0px));
+            padding-bottom: env(safe-area-inset-bottom, 0px);
             background-color: var(--white);
             display: flex;
             justify-content: space-around;
@@ -415,13 +436,49 @@
         }
 
         .order-footer {
-            position: sticky;
-            bottom: 0.5rem;
             background: var(--bg-color);
             padding-top: 1rem;
             padding-bottom: 1rem;
             border-top: 1px solid var(--border-color);
-            z-index: 50;
+        }
+
+        /* Modals: bottom sheet on mobile, centered on desktop */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 4.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .modal {
+                align-items: center;
+                padding-bottom: 0;
+            }
+
+            .modal-content {
+                border-radius: 20px !important;
+                animation: fadeIn 0.2s ease-out !important;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
         }
 
         .tag {
@@ -462,8 +519,43 @@
             border-color: var(--primary-color);
         }
 
+        .category-buttons {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+        }
+
+        .category-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--white);
+            color: var(--text-color);
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .product-card p {
+            margin-bottom: 0 !important;
+        }
+
         .fab {
-            position: fixed;
+            position: absolute;
             bottom: 5rem;
             right: 1rem;
             width: 3.5rem;
@@ -617,7 +709,7 @@
             { email: "pfuentes@farnet.com.gt", password: "Pedidos#2026!", name: "Paola Fuentes", role: "vendor" },
             { email: "pcastro@farnet.com.gt", password: "Pedidos#2026!", name: "Paolo Castro", role: "vendor" },
             { email: "rcaballeros@farnet.com.gt", password: "Pedidos#2026!", name: "Rafael Caballeros", role: "vendor" },
-            { email: "jsanchez@farnet.com.gt", password: "Pedidos#2026!", name: "Juan Sanchez", role: "vendor" }
+            { email: "jsanchez@farnet.com.gt", password: "Pedidos#2026!", name: "Julian Sanchez", role: "vendor" }
         ];
 
         const INITIAL_CUSTOMERS = [
@@ -3959,7 +4051,7 @@
         }
 
         // Cambia este número cada vez que actualices clientes, productos o usuarios en el script
-        const DATA_VERSION = "2";
+        const DATA_VERSION = "3";
 
         function bootstrapData() {
             const savedVersion = localStorage.getItem('fn_data_version');
@@ -4202,12 +4294,12 @@
                 <h2>Productos</h2>
                 <span style="width:2.2rem;"></span>
             </div>
-            <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.5rem;">
-                <input type="text" id="product-search" class="search-bar" style="margin-bottom:0;flex:1;" placeholder="Buscar...">
-                <select id="category-filter" style="padding:0.5rem;border:1px solid var(--border-color);border-radius:8px;background:var(--white);color:var(--text-color);">
-                    <option value="">Todas</option>
-                    ${categories.map(c => `<option value="${c}">${c}</option>`).join('')}
-                </select>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:0.5rem;">
+                <input type="text" id="product-search" class="search-bar" style="margin-bottom:0;" placeholder="Buscar...">
+                <div class="category-buttons" id="category-buttons-container">
+                    <button class="category-btn active" data-category="">Todas</button>
+                    ${categories.map(c => `<button class="category-btn" data-category="${c}">${c}</button>`).join('')}
+                </div>
             </div>
         </div>
         <div id="products-list" style="margin-top:1rem;">
@@ -4216,7 +4308,7 @@
                     <div style="display:flex;gap:1rem;align-items:center;">
                         <div style="flex:1;">
                             <p style="font-size:0.9rem;font-weight:600;margin-bottom:0;">${p.id} - ${p.nombre}</p>
-                            <p style="font-size:0.75rem;color:var(--text-light);">${p.categoria} | Q${Number(p.precio).toFixed(2)}</p>
+                            <p style="font-size:0.75rem;color:var(--text-light);margin-bottom:0;">${p.categoria} | Q${Number(p.precio).toFixed(2)}</p>
                         </div>
                         <i class="fas fa-chevron-right" style="color:var(--secondary-color);"></i>
                     </div>
@@ -4234,16 +4326,23 @@
                     openProductModal(p);
                 });
             });
+            let selectedCategory = '';
             const filter = () => {
                 const t = document.getElementById('product-search').value.toLowerCase();
-                const c = document.getElementById('category-filter').value;
                 document.querySelectorAll('.product-card').forEach(card => {
-                    const match = card.textContent.toLowerCase().includes(t) && (!c || card.dataset.category === c);
+                    const match = card.textContent.toLowerCase().includes(t) && (!selectedCategory || card.dataset.category === selectedCategory);
                     card.style.display = match ? 'block' : 'none';
                 });
             };
             document.getElementById('product-search').addEventListener('input', filter);
-            document.getElementById('category-filter').addEventListener('change', filter);
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedCategory = btn.getAttribute('data-category');
+                    filter();
+                });
+            });
         }
 
         function openProductModal(product) {
@@ -4334,7 +4433,7 @@
                 </select>
             </div>
             <textarea id="order-comment" class="comment-box" style="width:100%;margin-bottom:0.75rem;height:3rem;min-height:3rem;" placeholder="Comentarios...">${currentOrder.comment || ''}</textarea>
-            <button class="btn-primary" id="finalize-order-btn" style="padding:0.8rem;">FINALIZAR Y DESCARGAR PDF</button>
+            <button class="btn-primary" id="finalize-order-btn" style="padding:0.8rem;"><i class="fas fa-share-alt" style="margin-right:0.4rem;"></i>FINALIZAR Y COMPARTIR</button>
         </div>
     `;
             document.getElementById('finalize-order-btn').addEventListener('click', finalizeOrder);
@@ -4384,7 +4483,10 @@
             const orders = getOrders();
             orders.unshift(finalOrder);
             lsSet('fn_orders', orders);
-            generatePDF(finalOrder);
+
+            // Generar y compartir PDF directamente
+            generatePDF(finalOrder, true);
+
             currentOrder = { items: [], comment: '', transport: '' };
             localStorage.removeItem('fn_draft');
             selectedCustomer = null;
@@ -4403,28 +4505,37 @@
         </div>
         <div id="history-list">
             ${!orders.length ? '<p style="text-align:center;padding:2rem;">Sin pedidos guardados.</p>' :
-                    orders.map((o, idx) => `
-                    <div class="card history-card-item" style="margin-bottom:1rem;border-left:4px solid var(--primary-color);">
-                        <div style="display:flex;justify-content:space-between;">
-                            <strong>${o.customer.nombre}</strong>
-                            <span>Q${Number(o.total).toFixed(2)}</span>
+                    orders.map((o, idx) => {
+                        const customerName = o.customer?.nombre || 'Cliente Desconocido';
+                        const totalStr = Number(o.total || 0).toFixed(2);
+                        const dateStr = o.date ? new Date(o.date).toLocaleString('es-GT') : 'Fecha no disponible';
+                        const transportStr = o.transport || '—';
+                        return `
+                        <div class="card history-card-item" style="margin-bottom:1rem;border-left:4px solid var(--primary-color);">
+                            <div style="display:flex;justify-content:space-between;">
+                                <strong>${customerName}</strong>
+                                <span>Q${totalStr}</span>
+                            </div>
+                            <small>${dateStr}</small><br>
+                            <small style="color:var(--text-light);">Transporte: ${transportStr}</small>
+                            <div style="display:flex;gap:0.5rem;margin-top:0.5rem;">
+                                <button class="btn-secondary" style="flex:1;padding:0.5rem;" onclick="previewHistoryOrder(${idx})">Vista Previa</button>
+                                <button class="btn-secondary" style="flex:1;padding:0.5rem;" onclick="rePDF(${idx})">PDF</button>
+                                <button class="btn-secondary" style="flex:0.5;padding:0.5rem;" onclick="deleteOrder('${o.id || idx}')"><i class="fas fa-trash" style="color:var(--danger-color);"></i></button>
+                            </div>
                         </div>
-                        <small>${new Date(o.date).toLocaleString('es-GT')}</small><br>
-                        <small style="color:var(--text-light);">Transporte: ${o.transport || '—'}</small>
-                        <div style="display:flex;gap:0.5rem;margin-top:0.5rem;">
-                            <button class="btn-secondary" style="flex:1;padding:0.5rem;" onclick="previewHistoryOrder(${idx})">Vista Previa</button>
-                            <button class="btn-secondary" style="flex:1;padding:0.5rem;" onclick="rePDF(${idx})">PDF</button>
-                            <button class="btn-secondary" style="flex:0.5;padding:0.5rem;" onclick="deleteOrder('${o.id}')"><i class="fas fa-trash" style="color:var(--danger-color);"></i></button>
-                        </div>
-                    </div>
-                `).join('')
+                        `;
+                    }).join('')
                 }
         </div>
     `;
-            document.getElementById('history-search').addEventListener('input', e => {
-                const t = e.target.value.toLowerCase();
-                document.querySelectorAll('.history-card-item').forEach(c => c.style.display = c.textContent.toLowerCase().includes(t) ? 'block' : 'none');
-            });
+            const searchEl = document.getElementById('history-search');
+            if (searchEl) {
+                searchEl.addEventListener('input', e => {
+                    const t = e.target.value.toLowerCase();
+                    document.querySelectorAll('.history-card-item').forEach(c => c.style.display = c.textContent.toLowerCase().includes(t) ? 'block' : 'none');
+                });
+            }
         }
 
         window.rePDF = (idx) => { const o = getOrders()[idx]; if (o) generatePDF(o); };
@@ -4440,48 +4551,90 @@
             _previewOrder = order;
             const sub = order.items.reduce((s, i) => s + (i.qtyBase + i.qtyBonus) * i.unitPrice, 0);
             const bon = order.items.reduce((s, i) => s + i.qtyBonus * i.unitPrice, 0);
+            const neto = sub - bon;
             document.getElementById('preview-order-content').innerHTML = `
-        <div style="text-align:center;border-bottom:1px solid #ccc;padding-bottom:10px;margin-bottom:10px;">
-            <h2 style="margin:0;">FARNET, S.A.</h2>
-            <p style="margin:0;font-size:0.8rem;">Hoja de Pedido - Vista Previa</p>
-        </div>
-        <div style="font-size:0.85rem;">
-            <p><strong>Fecha:</strong> ${new Date(order.date).toLocaleString('es-GT')}</p>
-            <p><strong>Cliente:</strong> ${order.customer.nombre} (${order.customer.id})</p>
-            <p><strong>Vendedor:</strong> ${order.userName || order.userEmail}</p>
-            <p><strong>Transporte:</strong> ${order.transport || '—'}</p>
-        </div>
-        <table style="width:100%;border-collapse:collapse;margin-top:15px;font-size:0.75rem;">
-            <thead><tr style="background:#f4f4f4;border-bottom:2px solid #ccc;">
-                <th style="text-align:left;padding:5px;">Producto</th>
-                <th style="text-align:center;padding:5px;">Base</th>
-                <th style="text-align:center;padding:5px;">Bon</th>
-                <th style="text-align:right;padding:5px;">Total</th>
-            </tr></thead>
-            <tbody>
-                ${order.items.map(i => `
-                    <tr style="border-bottom:1px solid #eee;">
-                        <td style="padding:5px;">${i.nombre.substring(0, 30)}</td>
-                        <td style="text-align:center;padding:5px;">${i.qtyBase}</td>
-                        <td style="text-align:center;padding:5px;">${i.qtyBonus}</td>
-                        <td style="text-align:right;padding:5px;">Q${((i.qtyBase + i.qtyBonus) * i.unitPrice).toFixed(2)}</td>
+        <div style="font-family:Arial,sans-serif;color:#111;padding:4px;">
+
+            <!-- Encabezado tipo PDF -->
+            <div style="text-align:center;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid #001489;">
+                <div style="font-size:1.3rem;font-weight:800;letter-spacing:1px;color:#001489;">FARNET, S.A.</div>
+                <div style="font-size:0.75rem;color:#555;">Hoja de Pedido</div>
+                <div style="font-size:0.75rem;color:#555;">${order.userName || order.userEmail}</div>
+            </div>
+
+            <!-- Info pedido -->
+            <div style="font-size:0.8rem;margin-bottom:10px;line-height:1.8;">
+                <div><strong>Fecha:</strong> ${new Date(order.date).toLocaleDateString('es-GT')}</div>
+                <div><strong>Código:</strong> ${order.customer.id}</div>
+                <div><strong>Cliente:</strong> ${order.customer.nombre}</div>
+                <div><strong>NIT:</strong> ${order.customer.nit || '—'}</div>
+                <div><strong>Dirección:</strong> ${[order.customer.direccion, order.customer.municipio, order.customer.departamento].filter(Boolean).join(', ') || '—'}</div>
+                <div><strong>Transporte:</strong> ${order.transport || '—'}</div>
+            </div>
+            <hr style="border:none;border-top:1px solid #ccc;margin:10px 0;">
+
+            <!-- Tabla de productos -->
+            <table style="width:100%;border-collapse:collapse;font-size:0.72rem;">
+                <thead>
+                    <tr style="background:#001489;color:#fff;">
+                        <th style="text-align:left;padding:5px 4px;">Cod</th>
+                        <th style="text-align:left;padding:5px 4px;">Producto</th>
+                        <th style="text-align:center;padding:5px 3px;">Base</th>
+                        <th style="text-align:center;padding:5px 3px;">Bonif.</th>
+                        <th style="text-align:right;padding:5px 3px;">P.U.</th>
+                        <th style="text-align:center;padding:5px 3px;">STK</th>
+                        <th style="text-align:right;padding:5px 3px;">P.STK</th>
+                        <th style="text-align:right;padding:5px 4px;">Total</th>
+                        <th style="text-align:right;padding:5px 4px;">PF</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
-        <div style="margin-top:15px;border-top:2px solid #333;padding-top:10px;text-align:right;font-size:0.9rem;">
-            <p>Subtotal: Q${sub.toFixed(2)}</p>
-            <p>Bonificación: Q${bon.toFixed(2)}</p>
-            <p style="font-weight:700;color:#001489;">TOTAL NETO: Q${order.total.toFixed(2)}</p>
+                </thead>
+                <tbody>
+                    ${order.items.map((i, idx) => `
+                        <tr style="background:${idx % 2 === 0 ? '#f9f9f9' : '#ffffff'};border-bottom:1px solid #e5e5e5;">
+                            <td style="padding:5px 4px;color:#555;">${i.productId || ''}</td>
+                            <td style="padding:5px 4px;">${i.nombre}</td>
+                            <td style="text-align:center;padding:5px 3px;">${i.qtyBase}</td>
+                            <td style="text-align:center;padding:5px 3px;">${i.qtyBonus}</td>
+                            <td style="text-align:right;padding:5px 3px;">Q${Number(i.unitPrice).toFixed(2)}</td>
+                            <td style="text-align:center;padding:5px 3px;font-size:0.65rem;">${i.stickerType || '—'}</td>
+                            <td style="text-align:right;padding:5px 3px;">Q${Number(i.stickerPrice || 0).toFixed(2)}</td>
+                            <td style="text-align:right;padding:5px 4px;font-weight:600;">Q${((i.qtyBase + i.qtyBonus) * i.unitPrice).toFixed(2)}</td>
+                            <td style="text-align:right;padding:5px 4px;color:#001489;">=${((i.qtyBase * i.unitPrice / Math.max(1, i.qtyBase + i.qtyBonus)) - (i.stickerPrice || 0)).toFixed(2)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+
+            <!-- Totales -->
+            <div style="margin-top:12px;border-top:2px solid #001489;padding-top:10px;font-size:0.85rem;">
+                <div style="display:flex;justify-content:flex-end;gap:12px;margin-bottom:4px;">
+                    <span>Subtotal:</span><span>Q${sub.toFixed(2)}</span>
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:12px;margin-bottom:4px;">
+                    <span>Bonificación:</span><span>Q${bon.toFixed(2)}</span>
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:12px;font-size:1rem;font-weight:800;color:#001489;">
+                    <span>TOTAL NETO:</span><span>Q${neto.toFixed(2)}</span>
+                </div>
+            </div>
+
+            ${order.comment ? `
+            <div style="margin-top:12px;border:1px dashed #aaa;border-radius:6px;padding:8px;font-size:0.8rem;color:#444;">
+                <strong>Comentario:</strong> ${order.comment}
+            </div>` : ''}
+
+            <!-- Pie de página -->
+            <div style="margin-top:16px;border-top:1px solid #eee;padding-top:6px;font-size:0.65rem;color:#999;text-align:right;">
+                Generado: ${new Date().toLocaleString('es-GT')}
+            </div>
         </div>
-        ${order.comment ? `<div style="margin-top:10px;border:1px dashed #ccc;padding:10px;font-style:italic;"><strong>Comentario:</strong> ${order.comment}</div>` : ''}
     `;
             openModal('preview-modal');
         };
 
         // ── PDF GENERATOR ─────────────────────────────────────────────────────────────
 
-        function generatePDF(order) {
+        function generatePDF(order, shouldShare = false) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const pw = doc.internal.pageSize.getWidth();
@@ -4520,7 +4673,63 @@
             }
             y = doc.internal.pageSize.getHeight() - 15;
             doc.setFontSize(8); doc.setTextColor(150); doc.text('Generado: ' + new Date().toLocaleString(), 15, y);
-            doc.save(order.customer.id + '_' + order.customer.nombre + '.pdf');
+
+            const safeCustomerName = order.customer.nombre.replace(/[^a-zA-Z0-9]/g, '_');
+            const filename = `${order.customer.id}_${safeCustomerName}.pdf`;
+
+            // Si es compartir y el navegador soporta compartir archivos (ej. móviles)
+            let sharedSuccessfully = false;
+            if (shouldShare && typeof window.File !== 'undefined' && navigator.share && navigator.canShare) {
+                try {
+                    const blob = doc.output('blob');
+                    const file = new File([blob], filename, { type: 'application/pdf' });
+
+                    let canShareFiles = false;
+                    try {
+                        canShareFiles = navigator.canShare({ files: [file] });
+                    } catch (err) {
+                        console.warn('navigator.canShare falló:', err);
+                    }
+
+                    if (canShareFiles) {
+                        sharedSuccessfully = true;
+                        navigator.share({
+                            files: [file],
+                            title: `${order.customer.id} = ${order.customer.nombre}`,
+                            text: `Buen día, adjunto pedido de ${order.customer.nombre} favor de facturarlo, muchas gracias.`
+                        }).catch(err => {
+                            console.error('Error al compartir archivo:', err);
+                            // Fallback si el usuario cancela la acción
+                            doc.save(filename);
+                            openMailFallback(order);
+                        });
+                    }
+                } catch (e) {
+                    console.error('Error al preparar Web Share:', e);
+                }
+            }
+
+            // Fallback para escritorio o si no se pudo compartir
+            if (!sharedSuccessfully) {
+                try {
+                    doc.save(filename);
+                } catch (e) {
+                    console.error('Error al guardar PDF:', e);
+                }
+                if (shouldShare) {
+                    openMailFallback(order);
+                }
+            }
+        }
+
+        function openMailFallback(order) {
+            try {
+                const emailTo = 'cliente@farnet.com.gt';
+                const emailSubject = encodeURIComponent(order.customer.id + ' = ' + order.customer.nombre);
+                window.location.href = `mailto:${emailTo}?subject=${emailSubject}`;
+            } catch (e) {
+                console.error('Error en fallback de correo:', e);
+            }
         }
 
         // ── ADMIN VIEW ────────────────────────────────────────────────────────────────
@@ -4788,10 +4997,11 @@
         // ── TOAST ─────────────────────────────────────────────────────────────────────
 
         function showToast(msg) {
+            const app = document.getElementById('app');
             const t = document.createElement('div');
             t.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
-            t.style.cssText = 'position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--success-color);color:white;padding:0.75rem 1.25rem;border-radius:8px;z-index:9999;white-space:nowrap;';
-            document.body.appendChild(t);
+            t.style.cssText = 'position:absolute;top:70px;left:50%;transform:translateX(-50%);background:var(--success-color);color:white;padding:0.75rem 1.25rem;border-radius:8px;z-index:9999;white-space:nowrap;';
+            app.appendChild(t);
             setTimeout(() => t.remove(), 2000);
         }
     </script>
