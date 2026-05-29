@@ -713,6 +713,7 @@
         ];
 
         const INITIAL_CUSTOMERS = [
+            { id: "NUEVO", nombre: "CLIENTE NUEVO", nit: "N/A", telefono: "N/A", direccion: "N/A", municipio: "N/A", departamento: "N/A" },
             { id: "AVE01-002", nombre: "FARMACIA HERMANO PEDRO", nit: "19166052", telefono: "3007-9719", direccion: "4TA. CALLE 10-37 ZONA 1", municipio: "CARCHA", departamento: "ALTA VERAPAZ" },
             { id: "AVE02-001", nombre: "FARMACIA VANESA / GUILLERMINA BARRIENTOS", nit: "2576036-K", telefono: "7983-2284/5387-1849", direccion: "SAN FERNANDO, EL CHAHAL", municipio: "CHAHAL", departamento: "ALTA VERAPAZ" },
             { id: "AVE02-002", nombre: "MERIDA DELFINA MOLLINEDO CONTRERAS", nit: "3862445-1", telefono: "5385-5319", direccion: "BARRIO EL CAMPO, ATRAS DE LA ESCUELA, SAN AGUSTIN", municipio: "CHAHAL", departamento: "ALTA VERAPAZ" },
@@ -4052,7 +4053,7 @@
         }
 
         // Cambia este número cada vez que actualices clientes, productos o usuarios en el script
-        const DATA_VERSION = "4";
+        const DATA_VERSION = "5";
 
         function bootstrapData() {
             const savedVersion = localStorage.getItem('fn_data_version');
