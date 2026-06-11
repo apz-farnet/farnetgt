@@ -3986,6 +3986,17 @@
             { id: "ZAC11-023", nombre: "FARMACIA EL SHADDAI", nit: "88904091", telefono: "4641-5029", direccion: "7 CALLE 15 AV. Z. 1 MERCADO MUNICIPAL", municipio: "ZACAPA", departamento: "ZACAPA" },
             { id: "ZAC11-024", nombre: "FARMACIAS SALUD + BIEN", nit: "99650797", telefono: "31493367", direccion: "INTERIOR MERCADO MUNICIPAL ZACAPA", municipio: "ZACAPA", departamento: "ZACAPA" },
             { id: "ZAC11-025", nombre: "DISTRIBUIDORA  FARMACEUTICA HYJ", nit: "107169800", telefono: "3027-3348", direccion: "9 CALLE 16-36 BARRIO EL TAMARINDAL", municipio: "ZACAPA", departamento: "ZACAPA" },
+            { id: "JUT15-002", nombre: "FARMACIA RECINOS", nit: "87072343", telefono: "3008-9990", direccion: "ENTRADA PRINCIPAL, CONGUACO", municipio: "CONGUACO", departamento: "JUTIAPA" },
+            { id: "CHM10-024", nombre: "FARMACIA JERUSALEN/ ANGEL JIATZ", nit: "285017101", telefono: "5753-5074", direccion: "3RA. AV. 0-400 ZONA 4 BARRIO EL GUITE", municipio: "SAN MARTIN JILOTEPEQUE", departamento: "CHIMALTENANGO" },
+            { id: "BVE05-019", nombre: "ANTONIETA CORONADO ORTIZ", nit: "8225001", telefono: "7940-0163", direccion: "4A. CALLE 5-98 ZONA 1 SALAMA, BAJA VERAPAZ", municipio: "SALAMA", departamento: "BAJA VERAPAZ" },
+            { id: "STR04-009", nombre: "DR. MARLOS JAVIER DE MATA", nit: "48318272", telefono: "4831-8272", direccion: "1RA  AV. A 1-36 ZONA 4", municipio: "CUILAPA", departamento: "SANTA ROSA" },
+            { id: "EPR03-013", nombre: "DROGUERIA Y DISTRIBUIDORA FARMACEUTICA LA CEIBA, S.A.", nit: "106151886", telefono: "7728-6161", direccion: "1RA AV. 2-90 ZONA 5 BARRIO EL PORVENIR", municipio: "GUASTATOYA", departamento: "EL PROGRESO" },
+            { id: "EPR04-004", nombre: "FARMACIA EL ANGEL", nit: "101468970", telefono: "3001-5667", direccion: "BARRIO EL CALVARIO, MORAZAN EL PROGRESO GUASTATOYA", municipio: "MORAZAN", departamento: "EL PROGRESO" },
+            { id: "GUA10-029", nombre: "RENE CRUZ", nit: "90434315", telefono: "5625-3519", direccion: "COLONIA SAN JORGE LOTE 303 ALDEA SUACITE  FRENTE AL CAR  WASH EL PATO", municipio: "SAN JUAN SACATEPEQUEZ", departamento: "GUATEMALA" },
+            { id: "GUA13-024", nombre: "HEIDY RAQUEL TACATIC TURUY", nit: "94759790", telefono: "5492-1531", direccion: "2 CALLE 5-57 ZONA 1 EN MEDICENTRO SAN PEDRO", municipio: "SAN PEDRO SACATEPEQUEZ", departamento: "GUATEMALA" },
+            { id: "REU02-007", nombre: "FARMACIA EL XAB", nit: "88562980", telefono: "4701-4366", direccion: "ALDEA EL XAB CENTRO, ATRAS DE LA ESCUELA RANGEL GALINDO", municipio: "EL ASINTAL", departamento: "RETALHULEU" },
+            { id: "SUC03-045", nombre: "CLINICA MEDICA ABBA", nit: "27263398", telefono: "4994-3523/57053090", direccion: "2DA CALLE 1-86 ZONA 2, COLONIA OBREGON", municipio: "MAZATENANGO", departamento: "SUCHITEPEQUEZ" },
+            { id: "JUT07-002", nombre: "EDGAR DANIEL RAMOS", nit: "32547463", telefono: "4546-8012", direccion: "CALLE PRINCIPAL, BARRIO ARRIBA  ALDEA LA ESMERALDA", municipio: "JEREZ", departamento: "JUTIAPA" },
             { id: "ZAC11-026", nombre: "FARMACIA RAPHA", nit: "38236621", telefono: "5155-5243", direccion: "BARRIO CRUZ DE MAYO, ZACAPA CALLE PRINCIPAL FARMAHORRO", municipio: "ZACAPA", departamento: "ZACAPA" }
         ];
 
@@ -4053,7 +4064,7 @@
         }
 
         // Cambia este número cada vez que actualices clientes, productos o usuarios en el script
-        const DATA_VERSION = "5";
+        const DATA_VERSION = "6"; //11junio2026
 
         function bootstrapData() {
             const savedVersion = localStorage.getItem('fn_data_version');
@@ -4403,18 +4414,18 @@
         </div>
         <div id="order-items" style="margin-top:1rem;">
             ${currentOrder.items.map((item, i) => `
-                <div class="card" style="padding:0.75rem;margin-bottom:0.5rem;">
-                    <div style="display:flex;justify-content:space-between;">
-                        <div style="flex:1;">
-                            <p style="font-weight:600;">${item.nombre}</p>
-                            <p style="font-size:0.8rem;">${item.qtyBase} (+${item.qtyBonus} Bonif.) | Q${Number(item.unitPrice).toFixed(2)}</p>
-                            <p style="font-size:0.75rem;color:var(--primary-color);">Sticker: ${item.stickerType}${item.stickerPrice > 0 ? ' (Q' + Number(item.stickerPrice).toFixed(2) + ')' : ''}</p>
+                <div class="card" style="padding:0.6rem 0.75rem;margin-bottom:0.5rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+                        <div style="flex:1;min-width:0;">
+                            <p style="font-weight:600;margin-bottom:0.1rem;line-height:1.3;">${item.nombre}</p>
+                            <p style="font-size:0.8rem;margin-bottom:0.1rem;color:var(--text-light);">${item.qtyBase} (+${item.qtyBonus} Bonif.) | Q${Number(item.unitPrice).toFixed(2)}</p>
+                            <p style="font-size:0.75rem;margin-bottom:0;color:var(--primary-color);">Sticker: ${item.stickerType}${item.stickerPrice > 0 ? ' (Q' + Number(item.stickerPrice).toFixed(2) + ')' : ''}</p>
                         </div>
-                        <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;">
-                            <p style="font-weight:700;color:var(--primary-color);">Q${((item.qtyBase + item.qtyBonus) * item.unitPrice).toFixed(2)}</p>
-                            <div>
-                                <button class="btn-icon" onclick="editOrderItem(${i})"><i class="fas fa-edit"></i></button>
-                                <button class="btn-icon" onclick="removeOrderItem(${i})"><i class="fas fa-trash" style="color:var(--danger-color);"></i></button>
+                        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.15rem;flex-shrink:0;">
+                            <p style="font-weight:700;color:var(--primary-color);margin-bottom:0;">Q${((item.qtyBase + item.qtyBonus) * item.unitPrice).toFixed(2)}</p>
+                            <div style="display:flex;">
+                                <button class="btn-icon" style="padding:0.3rem;" onclick="editOrderItem(${i})"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon" style="padding:0.3rem;" onclick="removeOrderItem(${i})"><i class="fas fa-trash" style="color:var(--danger-color);"></i></button>
                             </div>
                         </div>
                     </div>
@@ -4497,23 +4508,66 @@
 
         // ── HISTORY VIEW ──────────────────────────────────────────────────────────────
 
+        let historyGroupMode = 'none'; // 'none' | 'day' | 'week' | 'month'
+
         function renderHistory() {
-            const orders = getOrders();
+            const allOrders = getOrders();
             const vc = document.getElementById('view-container');
             vc.innerHTML = `
         <div class="view-header">
             <h2>Historial de Pedidos</h2>
-            <input type="text" id="history-search" class="search-bar" style="margin-bottom:0;" placeholder="Buscar historial...">
+            <input type="text" id="history-search" class="search-bar" style="margin-bottom:0.75rem;" placeholder="Buscar historial...">
+            <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+                <span style="font-size:0.8rem;color:var(--text-light);font-weight:600;">Agrupar por:</span>
+                <button class="history-group-btn ${historyGroupMode === 'none' ? 'active' : ''}" data-mode="none" style="padding:0.3rem 0.75rem;border-radius:20px;border:1px solid var(--border-color);background:${historyGroupMode === 'none' ? 'var(--primary-color)' : 'var(--white)'};color:${historyGroupMode === 'none' ? '#fff' : 'var(--text-color)'};font-size:0.8rem;cursor:pointer;font-weight:500;">Sin agrupar</button>
+                <button class="history-group-btn ${historyGroupMode === 'day' ? 'active' : ''}" data-mode="day" style="padding:0.3rem 0.75rem;border-radius:20px;border:1px solid var(--border-color);background:${historyGroupMode === 'day' ? 'var(--primary-color)' : 'var(--white)'};color:${historyGroupMode === 'day' ? '#fff' : 'var(--text-color)'};font-size:0.8rem;cursor:pointer;font-weight:500;">Día</button>
+                <button class="history-group-btn ${historyGroupMode === 'week' ? 'active' : ''}" data-mode="week" style="padding:0.3rem 0.75rem;border-radius:20px;border:1px solid var(--border-color);background:${historyGroupMode === 'week' ? 'var(--primary-color)' : 'var(--white)'};color:${historyGroupMode === 'week' ? '#fff' : 'var(--text-color)'};font-size:0.8rem;cursor:pointer;font-weight:500;">Semana</button>
+                <button class="history-group-btn ${historyGroupMode === 'month' ? 'active' : ''}" data-mode="month" style="padding:0.3rem 0.75rem;border-radius:20px;border:1px solid var(--border-color);background:${historyGroupMode === 'month' ? 'var(--primary-color)' : 'var(--white)'};color:${historyGroupMode === 'month' ? '#fff' : 'var(--text-color)'};font-size:0.8rem;cursor:pointer;font-weight:500;">Mes</button>
+            </div>
         </div>
-        <div id="history-list">
-            ${!orders.length ? '<p style="text-align:center;padding:2rem;">Sin pedidos guardados.</p>' :
-                    orders.map((o, idx) => {
-                        const customerName = o.customer?.nombre || 'Cliente Desconocido';
-                        const totalStr = Number(o.total || 0).toFixed(2);
-                        const dateStr = o.date ? new Date(o.date).toLocaleString('es-GT') : 'Fecha no disponible';
-                        const transportStr = o.transport || '—';
-                        return `
-                        <div class="card history-card-item" style="margin-bottom:1rem;border-left:4px solid var(--primary-color);">
+        <div id="history-list"></div>
+    `;
+            function getGroupKey(dateStr, mode) {
+                if (!dateStr) return 'Sin fecha';
+                const d = new Date(dateStr);
+                if (mode === 'day') {
+                    return d.toLocaleDateString('es-GT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                } else if (mode === 'week') {
+                    // Get Monday of the week
+                    const day = d.getDay();
+                    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+                    const mon = new Date(d); mon.setDate(diff); mon.setHours(0, 0, 0, 0);
+                    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+                    const fmt = (dt) => dt.toLocaleDateString('es-GT', { day: 'numeric', month: 'short' });
+                    return `Semana del ${fmt(mon)} al ${fmt(sun)}, ${sun.getFullYear()}`;
+                } else if (mode === 'month') {
+                    return d.toLocaleDateString('es-GT', { month: 'long', year: 'numeric' });
+                }
+                return null;
+            }
+
+            function renderHistoryList(filterTerm = '') {
+                const orders = allOrders;
+                const list = document.getElementById('history-list');
+                if (!list) return;
+
+                const filtered = !filterTerm ? orders : orders.filter(o => {
+                    const text = [o.customer?.nombre, o.transport, o.date ? new Date(o.date).toLocaleString('es-GT') : ''].join(' ').toLowerCase();
+                    return text.includes(filterTerm.toLowerCase());
+                });
+
+                if (!filtered.length) {
+                    list.innerHTML = '<p style="text-align:center;padding:2rem;">Sin pedidos encontrados.</p>';
+                    return;
+                }
+
+                function orderCard(o, idx) {
+                    const customerName = o.customer?.nombre || 'Cliente Desconocido';
+                    const totalStr = Number(o.total || 0).toFixed(2);
+                    const dateStr = o.date ? new Date(o.date).toLocaleString('es-GT') : 'Fecha no disponible';
+                    const transportStr = o.transport || '—';
+                    return `
+                        <div class="card history-card-item" style="margin-bottom:0.75rem;border-left:4px solid var(--primary-color);" data-text="${(customerName + ' ' + dateStr + ' ' + transportStr).toLowerCase()}">
                             <div style="display:flex;justify-content:space-between;">
                                 <strong>${customerName}</strong>
                                 <span>Q${totalStr}</span>
@@ -4525,20 +4579,82 @@
                                 <button class="btn-secondary" style="flex:1;padding:0.5rem;" onclick="rePDF(${idx})">PDF</button>
                                 <button class="btn-secondary" style="flex:0.5;padding:0.5rem;" onclick="deleteOrder('${o.id || idx}')"><i class="fas fa-trash" style="color:var(--danger-color);"></i></button>
                             </div>
-                        </div>
-                        `;
-                    }).join('')
+                        </div>`;
                 }
-        </div>
-    `;
+
+                if (historyGroupMode === 'none') {
+                    list.innerHTML = filtered.map((o) => {
+                        const realIdx = orders.indexOf(o);
+                        return orderCard(o, realIdx);
+                    }).join('');
+                    return;
+                }
+
+                // Group by date range
+                const groups = new Map();
+                filtered.forEach(o => {
+                    const key = getGroupKey(o.date, historyGroupMode);
+                    if (!groups.has(key)) groups.set(key, []);
+                    groups.get(key).push(o);
+                });
+
+                let html = '';
+                groups.forEach((groupOrders, key) => {
+                    const groupTotal = groupOrders.reduce((s, o) => s + Number(o.total || 0), 0);
+                    const isExpanded = true; // always open by default
+                    const groupId = 'grp_' + key.replace(/[^a-z0-9]/gi, '_');
+                    html += `
+                        <div style="margin-bottom:1rem;">
+                            <div onclick="toggleHistoryGroup('${groupId}')" style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0.9rem;background:var(--primary-light);border-radius:10px;cursor:pointer;margin-bottom:0.5rem;border-left:4px solid var(--primary-color);">
+                                <div>
+                                    <span style="font-weight:700;font-size:0.9rem;color:var(--primary-color);text-transform:capitalize;">${key}</span>
+                                    <span style="font-size:0.75rem;color:var(--text-light);margin-left:0.5rem;">${groupOrders.length} pedido${groupOrders.length !== 1 ? 's' : ''}</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.75rem;">
+                                    <span style="font-weight:700;font-size:0.9rem;color:var(--primary-color);">Q${groupTotal.toFixed(2)}</span>
+                                    <i id="icon_${groupId}" class="fas fa-chevron-up" style="color:var(--primary-color);font-size:0.8rem;"></i>
+                                </div>
+                            </div>
+                            <div id="${groupId}" style="padding-left:0.25rem;">
+                                ${groupOrders.map(o => {
+                        const realIdx = orders.indexOf(o);
+                        return orderCard(o, realIdx);
+                    }).join('')}
+                            </div>
+                        </div>`;
+                });
+                list.innerHTML = html;
+            }
+
+            renderHistoryList();
+
+            // Group buttons
+            document.querySelectorAll('.history-group-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    historyGroupMode = btn.dataset.mode;
+                    renderHistory();
+                });
+            });
+
+            // Search
             const searchEl = document.getElementById('history-search');
             if (searchEl) {
+                let t;
                 searchEl.addEventListener('input', e => {
-                    const t = e.target.value.toLowerCase();
-                    document.querySelectorAll('.history-card-item').forEach(c => c.style.display = c.textContent.toLowerCase().includes(t) ? 'block' : 'none');
+                    clearTimeout(t);
+                    t = setTimeout(() => renderHistoryList(e.target.value), 250);
                 });
             }
         }
+
+        window.toggleHistoryGroup = function (groupId) {
+            const el = document.getElementById(groupId);
+            const icon = document.getElementById('icon_' + groupId);
+            if (!el) return;
+            const isHidden = el.style.display === 'none';
+            el.style.display = isHidden ? '' : 'none';
+            if (icon) icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+        };
 
         window.rePDF = (idx) => { const o = getOrders()[idx]; if (o) generatePDF(o); };
         window.deleteOrder = (id) => {
