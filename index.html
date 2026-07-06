@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pedidos GT</title>
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwMTQ4OSI+PHBhdGggZD0iTTIxIDE2VjhhMiAyIDAgMCAwLTEtMS43M2wtNy00YTIgMiAwIDAgMC0yIDBsLTcgNEEyIDIgMCAwIDAgMyA4djhhMiAyIDAgMCAwIDEgMS43M2w3IDRhMiAyIDAgMCAwIDIgMGw3LTRBMiAyIDAgMCAwIDIxIDE2ek0xMiAyMi4yN0w1IDE4VjkuNzNMMTIgMTRsNy00LjI3VjE4bC03IDQuMjd6TTEyIDExLjczTDUgNy40Nmw3LTQgNyA0LTcgNC4yN3oiLz48L3N2Zz4=">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -709,11 +711,12 @@
             { email: "pfuentes@farnet.com.gt", password: "Pedidos#2026!", name: "Paola Fuentes", role: "vendor" },
             { email: "pcastro@farnet.com.gt", password: "Pedidos#2026!", name: "Paolo Castro", role: "vendor" },
             { email: "rcaballeros@farnet.com.gt", password: "Pedidos#2026!", name: "Rafael Caballeros", role: "vendor" },
+            { email: "agomez@farnet.com.gt", password: "Pedidos#2026!", name: "Alex Gomez", role: "vendor" },
             { email: "jsanchez@farnet.com.gt", password: "Pedidos#2026!", name: "Julian Sanchez", role: "vendor" }
         ];
 
         const INITIAL_CUSTOMERS = [
-            { id: "NUEVO", nombre: "CLIENTE NUEVO", nit: "N/A", telefono: "N/A", direccion: "N/A", municipio: "N/A", departamento: "N/A" },
+            { id: "NUEVO", nombre: "CLIENTE NUEVO", nit: "COLOCAR EN OBSERVACIONES", telefono: "NOMBRE", direccion: "PARA IDENTIFICARLO", municipio: "N/A", departamento: "N/A" },
             { id: "AVE01-002", nombre: "FARMACIA HERMANO PEDRO", nit: "19166052", telefono: "3007-9719", direccion: "4TA. CALLE 10-37 ZONA 1", municipio: "CARCHA", departamento: "ALTA VERAPAZ" },
             { id: "AVE02-001", nombre: "FARMACIA VANESA / GUILLERMINA BARRIENTOS", nit: "2576036-K", telefono: "7983-2284/5387-1849", direccion: "SAN FERNANDO, EL CHAHAL", municipio: "CHAHAL", departamento: "ALTA VERAPAZ" },
             { id: "AVE02-002", nombre: "MERIDA DELFINA MOLLINEDO CONTRERAS", nit: "3862445-1", telefono: "5385-5319", direccion: "BARRIO EL CAMPO, ATRAS DE LA ESCUELA, SAN AGUSTIN", municipio: "CHAHAL", departamento: "ALTA VERAPAZ" },
@@ -728,7 +731,7 @@
             { id: "AVE03-006", nombre: "FARMACIA REYNA", nit: "6620261-2", telefono: "4601-6349", direccion: "CHISEC, (RECOMENDARLO EN FCIA. DE LA COMUNIDAD)", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
             { id: "AVE03-007", nombre: "FARMACIA AE CHAMAM ICO", nit: "3974087-0", telefono: "5736-6555, 4590-8771", direccion: "FRENTE AL CENTRO DE SALUD", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
             { id: "AVE03-008", nombre: "FARMACIA DEL DR. ALIVIO", nit: "8815106-9", telefono: "4015-0259, 3268-1620", direccion: "BARRIO EL CENTRO / CERCA DEL CENTRO DE SALUD", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
-            { id: "AVE03-009", nombre: "FARMA CLINICA ´´LA SALUD´´", nit: "2457516-K", telefono: "5373-9394", direccion: "LOTE 248 BARRIO EL CENTRO", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
+            { id: "AVE03-009", nombre: "FARMA CLINICA LA SALUD", nit: "2457516-K", telefono: "5373-9394", direccion: "LOTE 248 BARRIO EL CENTRO", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
             { id: "AVE03-010", nombre: "MARIA VERONICA TIU TZUNUX / FCIA. BENDICION", nit: "10803602", telefono: "5899-5356", direccion: "CALLE PRIN. PLAYITAS EN FCIA. BENDICION, POR LIBRERIA GENESIS", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
             { id: "AVE03-011", nombre: "FARMACIA CALEL", nit: "74559567", telefono: "4655-8103", direccion: "BARRIO EL CENTRO", municipio: "CHISEC", departamento: "ALTA VERAPAZ" },
             { id: "AVE04-001", nombre: "FARMACIA SUIZA", nit: "842757-7", telefono: "58431968//7951-0636", direccion: "1A. AV. 2-72 ZONA 2", municipio: "COBAN", departamento: "ALTA VERAPAZ" },
@@ -1005,7 +1008,8 @@
             { id: "CHM08-002", nombre: "LILIAN ESMERALDA MIZA MARROQUIN", nit: "39138445", telefono: "4089-3773", direccion: "1 AV. 028 ZONA 3", municipio: "SAN JOSE POAQUIL", departamento: "CHIMALTENANGO" },
             { id: "CHM08-003", nombre: "FARMACIA AYUDAR AL PROJIMO", nit: "72250186", telefono: "5752-3033", direccion: "1RA. CALLE 3-23 ZONA 2 SAN JOSE POAQUIL", municipio: "SAN JOSE POAQUIL", departamento: "CHIMALTENANGO" },
             { id: "CHM08-004", nombre: "FARMACIA SALUD Y VIDA", nit: "56031181", telefono: "4071-9130", direccion: "1 CALLE 1-79 ZONA 2", municipio: "SAN JOSE POAQUIL", departamento: "CHIMALTENANGO" },
-            { id: "CHM09-001", nombre: "JULIO RENE PEREN", nit: "", telefono: "7849-8667", direccion: "2 AV. 0-79 ZONA 3, SAN JUAN COMALAPA", municipio: "SAN JUAN COMALAPA", departamento: "CHIMALTENANGO" },
+            { id: "CHM08-005", nombre: "DR. YEFERSON OMAR GOMEZ GONZALEZ", nit: "113444346", telefono: "43720171-58563742", direccion: "1RA . CALLE ZONA 2 SAN JOSE POAQUIL 1-117", municipio: "SAN JOSE POAQUIL", departamento: "CHIMALTENANGO" },
+            { id: "CHM09-001", nombre: "JULIO RENE PEREN", nit: "0000", telefono: "7849-8667", direccion: "2 AV. 0-79 ZONA 3", municipio: "SAN JUAN COMALAPA", departamento: "CHIMALTENANGO" },
             { id: "CHM09-002", nombre: "MARCOS MUX / VENTA DE MEDICINA LA FUENTE", nit: "2875581-2", telefono: "7849-8511-3040-9600", direccion: "1 CALLE 0-67 ZONA 1", municipio: "SAN JUAN COMALAPA", departamento: "CHIMALTENANGO" },
             { id: "CHM09-003", nombre: "VENTA DE MEDICINA FE Y ESPERANZA", nit: "3758119-8", telefono: "", direccion: "3A CALLE 3-11 ZONA 3", municipio: "SAN JUAN COMALAPA", departamento: "CHIMALTENANGO" },
             { id: "CHM09-004", nombre: "MARIA ELENA TZIRIM BAL", nit: "3855976-5", telefono: "5517-2034", direccion: "4 CALLE 3-57 ZONA 3, COMALAPA", municipio: "SAN JUAN COMALAPA", departamento: "CHIMALTENANGO" },
@@ -1395,69 +1399,6 @@
             { id: "ESC13-001", nombre: "EDIL DANILO ORDOÑEZ ASENCIO", nit: "12081558", telefono: "4116-8709", direccion: "3RA. CALLE 10-66 FRENTE A FERETERIA EMANUEL", municipio: "SIPACATE", departamento: "ESCUINTLA" },
             { id: "ESC13-002", nombre: "DRA. ZOILA  VÁSQUEZ", nit: "5519570-9", telefono: "5539-5041", direccion: "5TA CALLE 15-00", municipio: "SIPACATE", departamento: "ESCUINTLA" },
             { id: "ESC13-003", nombre: "FARMACIA EL JORDAN", nit: "40369048", telefono: "4667-6999", direccion: "5TA. CALLE 5-50 SIPACATE", municipio: "SIPACATE", departamento: "ESCUINTLA" },
-            { id: "ESP-001", nombre: "ALISSON YAMILETH TERRAZA PEREZ", nit: "91723469", telefono: "", direccion: "CIUDAD", municipio: "NO APLICA", departamento: "NO APLICA" },
-            { id: "G001", nombre: "Marco T. Hernandez - Totonicapan", nit: "", telefono: "", direccion: "OFICINA", municipio: "TOTONICAPAN", departamento: "TOTONICAPAN" },
-            { id: "G002", nombre: "Rudy Rivas - Chimaltenango Cabecera", nit: "", telefono: "", direccion: "OFICINA", municipio: "CHIMALTENANGO", departamento: "CHIMALTENANGO" },
-            { id: "G003", nombre: "Ivan Diaz - San Marcos", nit: "", telefono: "", direccion: "OFICINA", municipio: "SAN MARCOS", departamento: "SAN MARCOS" },
-            { id: "G004", nombre: "Alfredo Fuentes - Quetzaltenango Municipios", nit: "", telefono: "", direccion: "OFICINA", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "G005", nombre: "Luis Bonilla - Jutiapa", nit: "", telefono: "", direccion: "OFICINA", municipio: "JUTIAPA", departamento: "JUTIAPA" },
-            { id: "G006", nombre: "Rafael Caballeros - Municipios 3", nit: "", telefono: "", direccion: "OFICINA", municipio: "SAN PEDRO SACATEPEQUEZ", departamento: "GUATEMALA" },
-            { id: "G007", nombre: "Carlos Morales - Peten Cabecera", nit: "", telefono: "", direccion: "OFICINA", municipio: "DOLORES", departamento: "PETEN" },
-            { id: "G008", nombre: "Frank Reyes - Huehuetenango Cabecera", nit: "", telefono: "", direccion: "OFICINA", municipio: "MALACATANCITO", departamento: "HUEHUETENANGO" },
-            { id: "G009", nombre: "Erick Barrientos - Antigua", nit: "", telefono: "", direccion: "OFICINA", municipio: "ANTIGUA GUATEMALA", departamento: "SACATEPEQUEZ" },
-            { id: "G010", nombre: "Daniel Castellanos - Ciudad Zona 1 P.B.", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G011", nombre: "Jose Manuel Duarte - Municipios I", nit: "", telefono: "", direccion: "OFICINA", municipio: "AMATITLAN", departamento: "GUATEMALA" },
-            { id: "G012", nombre: "Luis Bonilla - Coban Alta Verapaz", nit: "", telefono: "", direccion: "OFICINA", municipio: "COBAN", departamento: "ALTA VERAPAZ" },
-            { id: "G013", nombre: "Mario Estrada - Zona 1 Parte Baja", nit: "", telefono: "", direccion: "GUATEMALA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G014", nombre: "Mario Estrada - Ciudad Zona 1 y 2", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G015", nombre: "Marco T. Hernandez - Barberena", nit: "", telefono: "", direccion: "OFICINA", municipio: "BARBERENA", departamento: "SANTA ROSA" },
-            { id: "G016", nombre: "Rudy Rivas - Chimaltenango Municipios", nit: "", telefono: "", direccion: "OFICINA", municipio: "CHIMALTENANGO", departamento: "CHIMALTENANGO" },
-            { id: "G017", nombre: "Ivan Diaz - Huehuetenango Parte Alta", nit: "", telefono: "", direccion: "OFICINA", municipio: "HUEHUETENANGO", departamento: "HUEHUETENANGO" },
-            { id: "G018", nombre: "Alfredo Fuentes - San Marcos", nit: "", telefono: "", direccion: "OFICINA", municipio: "SAN MARCOS", departamento: "SAN MARCOS" },
-            { id: "G019", nombre: "Luis Bonilla - Baja Verapaz", nit: "", telefono: "", direccion: "OFICINA", municipio: "CUBULCO", departamento: "BAJA VERAPAZ" },
-            { id: "G020", nombre: "Rafael Caballeros - Ciudad Zona 19 P.A.", nit: "", telefono: "", direccion: "CIUDAD", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G021", nombre: "Carlos Morales - Peten Municipios", nit: "", telefono: "", direccion: "OFICINA", municipio: "DOLORES", departamento: "PETEN" },
-            { id: "G022", nombre: "Frank Reyes - Quiche", nit: "", telefono: "", direccion: "OFICINA", municipio: "SANTA CRUZ DEL QUICHE", departamento: "QUICHE" },
-            { id: "G023", nombre: "Erick Barrientos - Escuintla Cabecera", nit: "", telefono: "", direccion: "OFICINA", municipio: "ESCUINTLA", departamento: "ESCUINTLA" },
-            { id: "G024", nombre: "Daniel Castellanos - Ciudad Zona 1 P.A.", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G025", nombre: "Jose Manuel Duarte - Municipios II", nit: "", telefono: "", direccion: "OFICINA", municipio: "VILLA CANALES", departamento: "GUATEMALA" },
-            { id: "G026", nombre: "Hugo Collado - San Jose Pinula y Fraijanes", nit: "", telefono: "", direccion: "OFICINA", municipio: "SAN JOSE PINULA", departamento: "GUATEMALA" },
-            { id: "G027", nombre: "Jose Manuel Duarte - Coatepeque", nit: "", telefono: "", direccion: "OFICINA", municipio: "COATEPEQUE", departamento: "QUETZALTENANGO" },
-            { id: "G028", nombre: "Jonatan Hernandez - Mazatenango", nit: "", telefono: "", direccion: "OFICINA", municipio: "MAZATENANGO", departamento: "SUCHITEPEQUEZ" },
-            { id: "G029", nombre: "Marco T. Hernandez - Costa Chica", nit: "", telefono: "", direccion: "OFICINA", municipio: "PATULUL", departamento: "SUCHITEPEQUEZ" },
-            { id: "G030", nombre: "Rudy Rivas - Chiquimula", nit: "", telefono: "", direccion: "OFICINA", municipio: "CHIQUIMULA", departamento: "CHIQUIMULA" },
-            { id: "G031", nombre: "Ivan Diaz - Huehuetenango P.B.", nit: "", telefono: "", direccion: "OFICINA", municipio: "HUEHUETENANGO", departamento: "HUEHUETENANGO" },
-            { id: "G032", nombre: "Alfredo Fuentes - Quetzaltenango Cabecera I", nit: "", telefono: "", direccion: "OFICINA", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "G033", nombre: "Luis Bonilla - Taxisco y Chiquimulilla", nit: "", telefono: "", direccion: "OFICINA", municipio: "TAXISCO", departamento: "SANTA ROSA" },
-            { id: "G034", nombre: "Rafael Caballeros - Malacatan", nit: "", telefono: "", direccion: "OFICINA", municipio: "MALACATAN", departamento: "SAN MARCOS" },
-            { id: "G035", nombre: "Carlos Morales - Playa Grande Ixcan", nit: "", telefono: "", direccion: "OFICINA", municipio: "PLAYA GRANDE IXCAN", departamento: "QUICHE" },
-            { id: "G036", nombre: "Frank Reyes - Huehuetenango Municipios", nit: "", telefono: "", direccion: "OFICINA", municipio: "HUEHUETENANGO", departamento: "HUEHUETENANGO" },
-            { id: "G037", nombre: "Erick Barrientos - Escuintla Municipios", nit: "", telefono: "", direccion: "OFICINA", municipio: "ESCUINTLA", departamento: "ESCUINTLA" },
-            { id: "G038", nombre: "Jonatan Hernandez - Ciudad Zona 6", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G039", nombre: "Jose Manuel Duarte - Puerto Barrios y Zacapa", nit: "", telefono: "", direccion: "OFICINA", municipio: "PUERTO BARRIOS", departamento: "IZABAL" },
-            { id: "G040", nombre: "Rudy Rivas -  Zacapa y El Progreso", nit: "", telefono: "", direccion: "OFICINA", municipio: "ZACAPA", departamento: "ZACAPA" },
-            { id: "G041", nombre: "Hugo Collado - Ciudad Zona 7", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G042", nombre: "Daniel Castellanos - Ciudad Zona 9", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G043", nombre: "Marco T. Hernandez - Ciudad Zona 1", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G044", nombre: "Hugo Collado - Ciudad Zona 11 y Mixco", nit: "", telefono: "", direccion: "OFICINA", municipio: "MIXCO", departamento: "GUATEMALA" },
-            { id: "G045", nombre: "Ivan Diaz - Quiche Transversal", nit: "", telefono: "", direccion: "OFICINA", municipio: "SACAPULAS", departamento: "QUICHE" },
-            { id: "G046", nombre: "Alfredo Fuentes - Quetzaltenango Cabecera 2", nit: "", telefono: "", direccion: "OFICINA", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "G047", nombre: "Luis Bonilla - Jalapa y Jutiapa", nit: "", telefono: "", direccion: "OFICINA", municipio: "JALAPA", departamento: "JALAPA" },
-            { id: "G048", nombre: "Rafael Caballeros - Ciudad Zona 19 Parte Baja", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G049", nombre: "Carlos Morales - Peten Mixta", nit: "", telefono: "", direccion: "OFICINA", municipio: "FLORES", departamento: "PETEN" },
-            { id: "G050", nombre: "Frank Reyes - Ciudad Zona 12", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G051", nombre: "Erick Barrientos - Ciudad Zona 7 y 4", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G052", nombre: "Daniel Castellanos - Ciudad Zona 5", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G053", nombre: "Hugo Collado -  El Progreso", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G054", nombre: "Jonatan Hernandez - Ciudad Zona 18 y Palencia", nit: "", telefono: "", direccion: "OFICINA", municipio: "PALENCIA", departamento: "GUATEMALA" },
-            { id: "G055", nombre: "Jonatan Hernandez - Ciudad Zonas 3, 8 y 15", nit: "", telefono: "", direccion: "OFICINA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G056", nombre: "Jonatan Hernandez - Retalhuleu", nit: "", telefono: "", direccion: "OFICINA", municipio: "RETALHULEU", departamento: "RETALHULEU" },
-            { id: "G057", nombre: "Jorge Morales - Muestra Medica Supervision", nit: "", telefono: "", direccion: "", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G058", nombre: "Alex Palencia - Muestra Medica Supervision", nit: "", telefono: "", direccion: "", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "G059", nombre: "Kevin Palencia - Quetzaltenango Cabecera 3", nit: "", telefono: "", direccion: "", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "G060", nombre: "Kevin Palencia - San Marcos 1", nit: "", telefono: "", direccion: "", municipio: "SAN MARCOS", departamento: "SAN MARCOS" },
-            { id: "G061", nombre: "Kevin Palencia - Quetzaltengo Cabecera 4", nit: "", telefono: "", direccion: "", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "G062", nombre: "Kevin Palencia - Coban Alta Verapaz", nit: "", telefono: "", direccion: "", municipio: "COBAN", departamento: "ALTA VERAPAZ" },
             { id: "GUA01-001", nombre: "DR. CESAR GIOVANNI GIRON ORTIZ", nit: "717261-3", telefono: "6633-6686, 6632-9617", direccion: "Km. 29.5 AL PACIFICO C.C. FLORES DEL LAGO CLINICAS 6 Y 7 PUNTO MEDICO AMATITLAN", municipio: "AMATITLAN", departamento: "GUATEMALA" },
             { id: "GUA01-002", nombre: "FARMACIA EMANUEL", nit: "693168-5", telefono: "6633-6349", direccion: "5A. AV. 12-89 COLONIA PROGRESO II", municipio: "AMATITLAN", departamento: "GUATEMALA" },
             { id: "GUA01-003", nombre: "FARMACIA EL DESCUENTO / MARIA SANTAY", nit: "759802-5", telefono: "6633-1387", direccion: "2AV. 9-88 AMATITLAN", municipio: "AMATITLAN", departamento: "GUATEMALA" },
@@ -1513,10 +1454,8 @@
             { id: "GUA05-037", nombre: "FRANCISCO HERMIDES BARRERA SILVA", nit: "737934-K", telefono: "2432-4150", direccion: "8AV 2-04 ZONA 19 LA FLORIDA 2DO NIVEL", municipio: "GUATEMALA", departamento: "GUATEMALA" },
             { id: "GUA05-038", nombre: "RUMUALDO BARAHONA JACOME", nit: "784932-K", telefono: "2432-5142", direccion: "7A. AV. 1-20, ZONA 19 LA FLORIDA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
             { id: "GUA05-039", nombre: "AARON SANTIZO / FARMACIA CENTRAL FLORIDA", nit: "195114-9", telefono: "4442-8694", direccion: "CENTRO COM. JARDINES SN JUAN L.25 LA FLORIDA Z 19", municipio: "GUATEMALA", departamento: "GUATEMALA" },
-            { id: "GUA05-040", nombre: "DR. JOSUE ROLANDO RODRIGUEZ MORALES", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "536860-K", nit: "2432-4082", telefono: "13 AV. 6-05 ZONA 19 LA FLORIDA", direccion: "GUATEMALA", municipio: "GUATEMALA", departamento: "" },
-            { id: "GUA05-041", nombre: "FARMACIA JORDAN", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "396143-5", nit: "4392-9572", telefono: "12 AV. 6-83 ZONA 19, LA FLORIDA", direccion: "GUATEMALA", municipio: "GUATEMALA", departamento: "" },
+            { id: "GUA05-040", nombre: "DR. JOSUE ROLANDO RODRIGUEZ MORALES", nit: "536860-K", telefono: "2432-4082", direccion: "13 AV. 6-05 ZONA 19 LA FLORIDA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
+            { id: "GUA05-041", nombre: "FARMACIA JORDAN", nit: "396143-5", telefono: "4392-9572", direccion: "12 AV. 6-83 ZONA 19, LA FLORIDA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
             { id: "GUA05-042", nombre: "DR. LUIS DE FLORAN", nit: "243786-4", telefono: "2432-1008", direccion: "2DA. AV. B 2-68 ZONA 4 MONTE VERDE", municipio: "GUATEMALA", departamento: "GUATEMALA" },
             { id: "GUA05-043", nombre: "DR. RENE SAMAYOA", nit: "1239981-7", telefono: "5689-9305/2362-7164", direccion: "22 CALLE A 34-36 ZONA 5, COL. SARAVIA", municipio: "GUATEMALA", departamento: "GUATEMALA" },
             { id: "GUA05-044", nombre: "VIRGINIA SOFIA VERONICA GIL PALACIOS", nit: "626556-1", telefono: "2253-8434", direccion: "4TA. AV. 12-00 ZONA 1", municipio: "GUATEMALA", departamento: "GUATEMALA" },
@@ -1921,12 +1860,10 @@
             { id: "GUA16-015", nombre: "CINTHIA WALESKA GARCIA SALGUERO DE CHACON", nit: "42513200", telefono: "42513200", direccion: "KM. 42 CARRETERA A EL SALVADOR, PLAZA 22R, EL JOCOTILLO", municipio: "VILLA CANALES", departamento: "GUATEMALA" },
             { id: "GUA16-016", nombre: "FARMACIA SAN JOSE", nit: "6561357", telefono: "3117-7526", direccion: "3RA. CALLE 5-08 SANTA ELENE BARILLAS", municipio: "VILLA CANALES", departamento: "GUATEMALA" },
             { id: "GUA17-001", nombre: "FARMACIA SANTA TERESA / ARIEL RICARDO CABRERA", nit: "4629086", telefono: "6631-0204, 5746-0836", direccion: "5 AV. 1-20 ZONA 1", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
-            { id: "GUA17-002", nombre: "FARMACIA SAN FRANCISCO", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "5535573-0", nit: "5411-2268", telefono: "11 AV. 19-22 ZONA 5 COL. FUENTE DEL VALLE II", direccion: "VILLA NUEVA", municipio: "GUATEMALA", departamento: "" },
+            { id: "GUA17-002", nombre: "FARMACIA SAN FRANCISCO", nit: "5535573-0", telefono: "5411-2268", direccion: "11 AV. 19-22 ZONA 5 COL. FUENTE DEL VALLE II", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
             { id: "GUA17-003", nombre: "CENTRO MEDICO VILLA NUEVA, S. A.", nit: "507697-8", telefono: "6631-2214, 6636-3258", direccion: "4 AVENIDA 2-45 ZONA 4 COL. VENECIA II", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
             { id: "GUA17-004", nombre: "DR. MARVIN LUCO / CLINICA MEDICA SAMA", nit: "1588597-6", telefono: "6635-5504", direccion: "7A. AV. 6-73 ZONA 1", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
-            { id: "GUA17-005", nombre: "DR. HECTOR ESTUARDO MORALES GUZMAN", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "3928614-2", nit: "6661-9197", telefono: "4A. CALLE 6-14 2DO. NIVEL ZONA 1, VILLA NUEVA", direccion: "VILLA NUEVA", municipio: "GUATEMALA", departamento: "" },
+            { id: "GUA17-005", nombre: "DR. HECTOR ESTUARDO MORALES GUZMAN", nit: "3928614-2", telefono: "6661-9197", direccion: "4A. CALLE 6-14 2DO. NIVEL ZONA 1, VILLA NUEVA", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
             { id: "GUA17-006", nombre: "FARMACIA SAN MARTIN", nit: "17631-1", telefono: "6631-0117", direccion: "4A. CALLE 5-06 ZONA 1", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
             { id: "GUA17-007", nombre: "FARMACIA VIRGINIA / GLORIA MARINA DE LEON", nit: "534339-9", telefono: "5312-6375, 5678-2187", direccion: "4TA. CALLE 6-06 ZONA 1", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
             { id: "GUA17-008", nombre: "FARMACIA LAS VEGAS", nit: "818046-6", telefono: "5810-1839, 5218-5684", direccion: "5A. AV. 4-75 ZONA 1", municipio: "VILLA NUEVA", departamento: "GUATEMALA" },
@@ -2943,8 +2880,7 @@
             { id: "QUT15-002", nombre: "DR. JUAN GILBERTO GONZALEZ", nit: "3879990-1", telefono: "7761-3851/5716-6131", direccion: "ALDEA CHIQUILAJA 013-5 BOVEDA", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
             { id: "QUT15-003", nombre: "DR. MARCOS AURELIO FUENTES", nit: "17430917", telefono: "5413-3530", direccion: "6A.CALLE 3-45 Z.11 CASA 22 COND.PUERTA DEL VALLE 1", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
             { id: "QUT15-004", nombre: "DRA. GAUDY ISABEL LOPEZ TECUM", nit: "3418499-6", telefono: "5930-3616, 4050-7119", direccion: "DIAGONAL 3 7-81 ZONA 5", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
-            { id: "QUT15-005", nombre: "DR. RONALD DE JESUS ALVARADO", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "", nit: "7767-7405, 5247-5860", telefono: "6A. CALLE 5-10 ZONA 3", direccion: "QUETZALTENANGO", municipio: "QUETZALTENANGO", departamento: "" },
+            { id: "QUT15-005", nombre: "DR. RONALD DE JESUS ALVARADO", nit: "", telefono: "7767-7405, 5247-5860", direccion: "6A. CALLE 5-10 ZONA 3", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
             { id: "QUT15-006", nombre: "CERVECERIA NACIONAL, S.A.", nit: "33635-1", telefono: "7761-2251", direccion: "CALLE RODOLFO ROBLES 20-31 ZONA 1", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
             { id: "QUT15-007", nombre: "ASOCIACION PRO SALUD INTEGRAL DE DESARROLLO", nit: "8250463-6", telefono: "7766-9248, 5894-0805", direccion: "37 AV. 0-35 ZONA 8", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
             { id: "QUT15-008", nombre: "DRA. MAGDA JOSEFINA BARRILLAS", nit: "2649779-4", telefono: "5214-3959", direccion: "4A. CALLE 16 - 68 ZONA 1 REF. TDA ARGENTINA", municipio: "QUETZALTENANGO", departamento: "QUETZALTENANGO" },
@@ -3090,8 +3026,7 @@
             { id: "QUT19-008", nombre: "CENTRO CLINICO MAYA", nit: "483785-1", telefono: "7768-5174/5590-1738", direccion: "2A. CALLE 5-77 ZONA 2", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
             { id: "QUT19-009", nombre: "VENTA DE MEDICINA LA FUENTE/RUTH ANA MARIA PEREZ", nit: "3747707-2", telefono: "5450-2664", direccion: "CANTON BUENA VISTA SECTOR 1", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
             { id: "QUT19-010", nombre: "FARMACIA SAN RAFAEL", nit: "565104-2", telefono: "7763-8506/7763-8728", direccion: "2A. CALLE 2-16 ZONA 2", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
-            { id: "QUT19-011", nombre: "DR. EDGAR JOEL ROMERO MARROQUIN", nit: "", telefono: "", direccion: "", municipio: "", departamento: "" },
-            { id: "", nombre: "4244398-9", nit: "3100-9043, 5175-1545", telefono: "ENTRADA A CASERIO LOS ROMERO", direccion: "SAN JUAN OSTUNCALCO", municipio: "QUETZALTENANGO", departamento: "" },
+            { id: "QUT19-011", nombre: "DR. EDGAR JOEL ROMERO MARROQUIN", nit: "4244398-9", telefono: "3100-9043, 5175-1545", direccion: "ENTRADA A CASERIO LOS ROMERO", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
             { id: "QUT19-012", nombre: "FARMACIA LA SALUD No 2", nit: "627280-0**", telefono: "4918-8641", direccion: "2A AV. 4-17 ZONA 3", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
             { id: "QUT19-013", nombre: "EZEQUIAS CABRERA LOPEZ", nit: "7407581-0", telefono: "5563-4465", direccion: "5A. CALLE 3-26 ZONA 2", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
             { id: "QUT19-019", nombre: "FARMAFE", nit: "6260738-3", telefono: "5171-3381", direccion: "2da. Av. 1-04 ZONA 4", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
@@ -3998,7 +3933,24 @@
             { id: "SUC03-045", nombre: "CLINICA MEDICA ABBA", nit: "27263398", telefono: "4994-3523/57053090", direccion: "2DA CALLE 1-86 ZONA 2, COLONIA OBREGON", municipio: "MAZATENANGO", departamento: "SUCHITEPEQUEZ" },
             { id: "JUT07-002", nombre: "EDGAR DANIEL RAMOS", nit: "32547463", telefono: "4546-8012", direccion: "CALLE PRINCIPAL, BARRIO ARRIBA  ALDEA LA ESMERALDA", municipio: "JEREZ", departamento: "JUTIAPA" },
             { id: "CHM02-027", nombre: "VENTA DE MEDICINA SAN RAFAEL", nit: "55207960", telefono: "3608-2560", direccion: "5.AV. FINAL COL. SAN RAFAEL LOTE 922", municipio: "CHIMALTENANGO", departamento: "CHIMALTENANGO" },
+            { id: "QUT02-007", nombre: "HOSPITAL PRIVADO FE Y VIDA", nit: "*64193403", telefono: "3824-1940", direccion: "ALDEA LOS CORRALES ZONA 0", municipio: "CABRICAN", departamento: "QUETZALTENANGO" },
+            { id: "GUA11-022", nombre: "DIXON WAGNER JAFET PEREZ CHIM", nit: "96637323", telefono: "5558-7508", direccion: "LOTE 19 MANZANA, K SECTOR 4 PRADOS DE VILLA HERMOSA", municipio: "SAN MIGUEL PETAPA", departamento: "GUATEMALA" },
+            { id: "GUA14-011", nombre: "MARVIN OSWALDO XIQUIN CAMEY", nit: "96504277", telefono: "5559-1373", direccion: "CARRETERA A CHUARRANCHO LOTE 15 ALDEA EL CARRIZAL KM.26.5 Z.0", municipio: "SAN RAYMUNDO", departamento: "GUATEMALA" },
+            { id: "SMC22-020", nombre: "FARMACIA FUENTE DE VIDA", nit: "38351706", telefono: "4213-3973", direccion: "5TA  CALLE 14-407 ZONA 5", municipio: "SAN MARCOS", departamento: "SAN MARCOS" },
+            { id: "BVE01-018", nombre: "FARMASOLUCIONES", nit: "110137868", telefono: "5166-2880", direccion: "2 CALLE BARRIO SANTIAGO  A UNOS METROS DEL CENTRO DE SALUD", municipio: "CUBULCO", departamento: "BAJA VERAPAZ" },
+            { id: "QUT19-044", nombre: "FARMACIA MAS SALUD", nit: "83600663", telefono: "4545-5612", direccion: "2 AV. 5-53 ZONA 2", municipio: "SAN JUAN OSTUNCALCO", departamento: "QUETZALTENANGO" },
+            { id: "HUE06-071", nombre: "FARMACIA EMANUEL", nit: "58239065", telefono: "4590-1163", direccion: "ZACULEU CENTRAL Z.9 UNA CUADRA ANTES  LAGUNA POR IGLE.FARO DE LUZ", municipio: "HUEHUETENANGO", departamento: "HUEHUETENANGO" },
+            { id: "HUE22-001", nombre: "FARMACIA MENDEZ", nit: "103543503", telefono: "4840-6397", direccion: "ALDEA LUIS LEYVA FRENTE DE MUNICIPALIDAD", municipio: "SAN RAFAEL PETZAL", departamento: "HUEHUETENANGO" },
+            { id: "BVE02-006", nombre: "FARMACIA LA ECONOMICA", nit: "39523721", telefono: "4827-1248", direccion: "FRANTE A ESCUELA OFICIAL URBANA MIXTA GRANADOS", municipio: "GRANADOS", departamento: "BAJA VERAPAZ" },
+            { id: "HUE27-024", nombre: "HOSPITAL EL ROBLE DE ESPECIALIDADES, S.A.", nit: "120668661", telefono: "4582-4250", direccion: "5 AV. 2DA. CALLE ZONA 1", municipio: "SANTA CRUZ BARILLAS", departamento: "HUEHUETENANGO" },
+            { id: "IZA01-023", nombre: "GRUPO DE SERVIEX GUADALUPE, S.A.", nit: "120860422", telefono: "5329-6378/3007-4711", direccion: "4TA. AV. A 4TA. CALLE  Z.1,  EN MARIEGAN, FRENTE ESCUELA MAYA", municipio: "EL ESTOR", departamento: "IZABAL" },
+            { id: "JUT09-010", nombre: "FARMACIA MARTITA", nit: "53586689", telefono: "5813-1533", direccion: "CALLE PRINCIPAL A UN COSTADO DEL IGSS", municipio: "MOYUTA", departamento: "JUTIAPA" },
+            { id: "PET13-014", nombre: "HOSPITAL PRIVADO PLUS- MEDIKCENTER", nit: "91832616", telefono: "3565-8782/5812-2681", direccion: "LAS POZAS, ZONA 0, CALLE PRINCIPAL", municipio: "SAYAXCHE", departamento: "PETEN" },
+            { id: "QUT07-005", nombre: "CLINI MEDIC SAN ANTONIO  DE PADUA", nit: "48232718", telefono: "4829-7891", direccion: "KM 250 C. A COLOMBA COSTA CUCA BARRIO NUEVO EN CLINI MEDIC", municipio: "CONCEPCION CHIQUIRICHAPA", departamento: "QUETZALTENANGO" },
+            { id: "EPR08-008", nombre: "FARMACIA MERLOS", nit: "75649055", telefono: "5017-6607", direccion: "1RA. CALLE 0-39 ZONA 3 FRENTE A LA POCIA DE SANARATE", municipio: "SANARATE", departamento: "EL PROGRESO" },
+            { id: "SMC25-062", nombre: "EDGAR IVAN LOPEZ MIRANDA", nit: "94433429", telefono: "4159-4601/3023-0638", direccion: "AVENIDA FINAL 3-46 ZONA 0", municipio: "SAN PEDRO SACATEPEQUEZ", departamento: "SAN MARCOS" },
             { id: "ZAC11-026", nombre: "FARMACIA RAPHA", nit: "38236621", telefono: "5155-5243", direccion: "BARRIO CRUZ DE MAYO, ZACAPA CALLE PRINCIPAL FARMAHORRO", municipio: "ZACAPA", departamento: "ZACAPA" }
+
         ];
 
         const INITIAL_PRODUCTS = [
@@ -4052,7 +4004,7 @@
             { id: "Guatex" },
             { id: "Forza" },
             { id: "Cargo Ex" },
-            { id: "Propio" }
+            { id: "Oficina" }
         ];
 
         // ── STORAGE HELPERS ──────────────────────────────────────────────────────────
@@ -4065,7 +4017,7 @@
         }
 
         // Cambia este número cada vez que actualices clientes, productos o usuarios en el script
-        const DATA_VERSION = "7"; //16junio2026
+        const DATA_VERSION = "8"; //06jul2026
 
         function bootstrapData() {
             const savedVersion = localStorage.getItem('fn_data_version');
